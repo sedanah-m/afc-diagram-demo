@@ -1,0 +1,17 @@
+---
+// src/components/AFCFlowDiagram/AFCFlowDiagram.astro
+import AFCFlowDiagramReact from './AFCFlowDiagram.tsx';
+---
+
+<div class="afc-diagram-wrapper" aria-label="Interactive diagram showing manual vs automatic function calling">
+  {/* NTS, make sure JS is only loaded when scrolled into view */}
+  
+  <AFCFlowDiagramReact client:visible />
+  
+  <noscript>
+    <div style="border: 1px solid #ccc; padding: 16px;">
+      <p><strong>Manual flow (5 steps):</strong> 1. Prompt sent &rarr; 2. Model returns FunctionCall &rarr; 3. App intercepts &rarr; 4. App sends FunctionResponse &rarr; 5. Final answer</p>
+      <p><strong>Automatic flow (3 steps):</strong> 1. Prompt sent via chat.sendMessage() &rarr; 2. SDK Managed (detects, executes, responds) &rarr; 3. Final answer</p>
+    </div>
+  </noscript>
+</div>

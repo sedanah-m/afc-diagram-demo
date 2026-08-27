@@ -1,0 +1,242 @@
+/* src/components/AFCFlowDiagram/AFCFlowDiagram.module.css */
+.diagramContainer {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.modeText {
+  font-weight: 500;
+  font-size: 15px;
+  color: #757575;
+  transition: color 0.3s;
+}
+
+.activeText {
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+.toggleBtn {
+  width: 56px;
+  height: 28px;
+  background: #bdbdbd;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.toggleBtn.autoOn {
+  background: #1a73e8;
+}
+
+.toggleThumb {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggleBtn.autoOn .toggleThumb {
+  transform: translateX(28px);
+}
+
+.flowTrack {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  position: relative;
+  min-height: 96px;
+}
+
+.node {
+  flex: 1 1 0px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2px solid #dadce0;
+  border-radius: 8px;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3c4043;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  opacity: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.node:focus {
+  outline: none;
+}
+
+.node:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+}
+
+.nodeLabel {
+  display: block;
+  width: 100%;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sdkNode {
+  border-color: #fbbc04; 
+}
+
+.hoveredNode {
+  border-color: #8ab4f8;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.12);
+  transform: translateY(-2px);
+  z-index: 2;
+}
+
+.pinnedNode {
+  border-color: #e37400;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px #f9ab00, 0 6px 18px rgba(227, 116, 0, 0.25);
+  transform: translateY(-4px);
+  z-index: 4;
+}
+
+.pinnedNode:hover {
+  box-shadow: 0 0 0 2px #f9ab00, 0 8px 22px rgba(227, 116, 0, 0.32);
+  transform: translateY(-5px);
+}
+
+.dimmedNode {
+  opacity: 0.45;
+  background: #f1f3f4;
+  filter: grayscale(20%);
+}
+
+.dimmedNode:hover {
+  opacity: 0.9;
+  filter: none;
+}
+
+.hiddenNode {
+  opacity: 0;
+  flex: 0 0 0px;
+  max-width: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  pointer-events: none;
+}
+
+.mergedNode {
+  flex: 3 1 0px; 
+  background: #e8f0fe;
+  border-color: #1a73e8;
+  color: #1967d2;
+}
+
+/* Arrow Styles */
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9aa0a6;
+  width: 24px;
+  min-width: 24px;
+  flex: 0 0 24px;
+  margin: 0 8px; 
+  opacity: 1;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.hiddenArrow {
+  opacity: 0;
+  width: 0;
+  min-width: 0;
+  flex: 0 0 0px;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.dimmedArrow {
+  opacity: 0.3;
+}
+
+.captionBox {
+  background: #202124;
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 8px;
+  text-align: center;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.captionBox p {
+  color: #ffffff !important;
+  margin: 0 !important;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Step Badge Styles */
+.stepBadge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #e8eaed;
+  color: #5f6368;
+  padding: 2px 6px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.sdkNode:not(.mergedNode) .stepBadge {
+  background: #fef7e0;
+  color: #b06000;
+}
+
+.mergedNode .stepBadge {
+  background: #d2e3fc;
+  color: #1967d2;
+}
